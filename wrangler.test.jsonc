@@ -1,0 +1,13 @@
+{
+  // LOCAL END-TO-END TESTS ONLY — never deployed. Same as wrangler.jsonc but with the scripted fake Gemini (no key, no network).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "studyai-test",
+  "main": "worker/src/test-entry.ts",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": { "directory": "./dist", "binding": "ASSETS", "not_found_handling": "single-page-application", "run_worker_first": ["/api/*"] },
+  "durable_objects": { "bindings": [{ "name": "STUDYAI", "class_name": "StudyAiTestDO" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["StudyAiTestDO"] }],
+  "vars": { "PRIVATE_SITE": "off" }
+}
