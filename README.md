@@ -1,5 +1,7 @@
 # StudyAI
 
+[![CI](https://github.com/zuhairhalawa/studyai/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/zuhairhalawa/studyai/actions/workflows/ci.yml) [![Security](https://github.com/zuhairhalawa/studyai/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/zuhairhalawa/studyai/actions/workflows/codeql.yml)
+
 A local-first study platform for university lectures. Drop in your PowerPoint files, read them slide by slide beside the text the app extracted, search everything, study with spaced-repetition flashcards and practice exams, and, only if you choose, ask an AI tutor that answers from your own slides and says which slide each point comes from.
 
 Your lectures and study data stay in your browser. The study app needs no account and makes no third-party requests. The AI tutor is an optional add-on that you run yourself on Cloudflare's free plan with your own Google Gemini free-tier key; nothing is sent anywhere until you have confirmed what will be sent.
