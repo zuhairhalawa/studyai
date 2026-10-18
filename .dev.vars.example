@@ -1,0 +1,15 @@
+# .dev.vars.example -- placeholders only. Copy to `.dev.vars` (untracked, git-ignored) for local Worker development.
+# Real values go ONLY in `.dev.vars` locally and in Cloudflare secrets (`wrangler secret put <NAME>`) in production.
+# Never put a real value in this file, in a chat, in a log or in a commit.
+
+# Created by the owner in Google AI Studio and pasted by the owner only.
+GEMINI_API_KEY=
+
+# Produced by `pnpm owner:keygen`.
+OWNER_KEY_HASH=
+
+# Produced by `pnpm owner:keygen`.
+SESSION_SECRET=
+
+# Hosts (host[:port]) the Worker accepts requests for. localhost:8787 is the local `wrangler dev` address.
+ALLOWED_HOSTS=localhost:8787

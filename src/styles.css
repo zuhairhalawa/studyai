@@ -1,0 +1,386 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/literata/index.css';
+@import '@fontsource-variable/literata/wght-italic.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'katex/dist/katex.min.css';
+
+/*
+ * Design tokens.
+ * Light: cool graphite "paper", deep teal accent. Dark: deep slate.
+ * The yellow `mark` colour is reserved for evidence: search hits and source highlights.
+ */
+:root {
+  --paper: #f3f5f7;
+  --surface: #ffffff;
+  --sunken: #e9edf1;
+  --ink: #18212b;
+  --ink-2: #435060;
+  --ink-3: #5b6876;
+  --rule: #d5dbe2;
+  --rule-strong: #b7c0ca;
+  --accent: #0b6e6e;
+  --accent-ink: #ffffff;
+  --accent-soft: #dcefee;
+  --mark: #ffe070;
+  --mark-ink: #18212b;
+  --ok: #1f7a4d;
+  --warn: #8f5200;
+  --bad: #b42318;
+  --info: #2b5fa6;
+  --ok-soft: #e1f3ea;
+  --warn-soft: #fbefd6;
+  --bad-soft: #fbe3e0;
+  --slide-bg: #ffffff;
+  --scrim: rgb(14 19 25 / 0.45);
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --paper: #0e1319;
+  --surface: #151b22;
+  --sunken: #0a0e13;
+  --ink: #e8ecf1;
+  --ink-2: #b3bdc9;
+  --ink-3: #8d99a8;
+  --rule: #27313c;
+  --rule-strong: #3a4756;
+  --accent: #4fc3c0;
+  --accent-ink: #06201f;
+  --accent-soft: #12302f;
+  --mark: #7a6200;
+  --mark-ink: #fff3c4;
+  --ok: #4cc38a;
+  --warn: #e3a63b;
+  --bad: #ff8a7c;
+  --info: #7aa7e8;
+  --ok-soft: #12291f;
+  --warn-soft: #2e2410;
+  --bad-soft: #321a17;
+  --slide-bg: #ffffff;
+  --scrim: rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #0e1319;
+    --surface: #151b22;
+    --sunken: #0a0e13;
+    --ink: #e8ecf1;
+    --ink-2: #b3bdc9;
+    --ink-3: #8d99a8;
+    --rule: #27313c;
+    --rule-strong: #3a4756;
+    --accent: #4fc3c0;
+    --accent-ink: #06201f;
+    --accent-soft: #12302f;
+    --mark: #7a6200;
+    --mark-ink: #fff3c4;
+    --ok: #4cc38a;
+    --warn: #e3a63b;
+    --bad: #ff8a7c;
+    --info: #7aa7e8;
+    --ok-soft: #12291f;
+    --warn-soft: #2e2410;
+    --bad-soft: #321a17;
+    --scrim: rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-mark: var(--mark);
+  --color-mark-ink: var(--mark-ink);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-info: var(--info);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad-soft: var(--bad-soft);
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Literata Variable', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --radius-control: 6px;
+  --radius-panel: 8px;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--paper);
+}
+
+/* Visible keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+::selection {
+  background: var(--mark);
+  color: var(--mark-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reading text: serif, generous leading, capped line length. */
+.reading {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 68ch;
+  color: var(--ink);
+}
+.reading p + p {
+  margin-top: 0.75em;
+}
+
+/* Evidence highlight (search hits, source quotes). */
+mark,
+.evidence {
+  background: var(--mark);
+  color: var(--mark-ink);
+  border-radius: 2px;
+  padding: 0 0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* The reconstructed slide: sized by container width so text scales with it. */
+.slide-stage {
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+  background: var(--slide-bg);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--rule-strong);
+  font-family: Calibri, Carlito, 'Segoe UI', 'IBM Plex Sans', system-ui, sans-serif;
+  user-select: text;
+}
+.slide-stage * {
+  box-sizing: border-box;
+}
+.slide-el {
+  position: absolute;
+}
+.slide-el[data-active='true'] {
+  outline: 0.35cqw solid var(--accent);
+  outline-offset: 0.2cqw;
+  z-index: 9999;
+}
+.slide-el[data-hover='true'] {
+  outline: 0.25cqw dashed var(--accent);
+  outline-offset: 0.2cqw;
+}
+.slide-stage .katex {
+  font-size: 1.05em;
+}
+
+/* Scrollbars that do not shout. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-strong) transparent;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+dialog {
+  color: var(--ink);
+}
+dialog::backdrop {
+  background: var(--scrim);
+}
+
+/* Rendered markdown (notes, cards, answers). */
+.md {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+/* Inside a line of other text (a marking point with a formula): it takes the text around it. */
+.md.md-inline {
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.md > :first-child {
+  margin-top: 0;
+}
+.md > :last-child {
+  margin-bottom: 0;
+}
+.md p,
+.md ul,
+.md ol,
+.md pre,
+.md blockquote,
+.md table {
+  margin: 0.7em 0;
+}
+.md h1,
+.md h2,
+.md h3,
+.md h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 1.2em 0 0.4em;
+}
+.md h1 {
+  font-size: 1.5rem;
+}
+.md h2 {
+  font-size: 1.25rem;
+}
+.md h3 {
+  font-size: 1.1rem;
+}
+.md ul,
+.md ol {
+  padding-left: 1.4em;
+}
+.md ul {
+  list-style: disc;
+}
+.md ol {
+  list-style: decimal;
+}
+.md li + li {
+  margin-top: 0.25em;
+}
+.md a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.md code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--sunken);
+  border-radius: 4px;
+  padding: 0.1em 0.3em;
+}
+.md pre {
+  background: var(--sunken);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-panel);
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+.md pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.9rem;
+}
+.md blockquote {
+  border-left: 3px solid var(--rule-strong);
+  padding-left: 1rem;
+  color: var(--ink-2);
+}
+.md table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95em;
+}
+.md th,
+.md td {
+  border: 1px solid var(--rule-strong);
+  padding: 0.35rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+.md th {
+  background: var(--sunken);
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+.md .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2em 0;
+}
+/* Code token colours (highlight.js classes) that work in both themes. */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-built_in {
+  color: var(--info);
+  font-weight: 500;
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-symbol {
+  color: var(--ok);
+}
+.hljs-number,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable {
+  color: var(--warn);
+}
+.hljs-comment,
+.hljs-quote {
+  color: var(--ink-3);
+  font-style: italic;
+}
+.hljs-title,
+.hljs-function,
+.hljs-section,
+.hljs-type,
+.hljs-class {
+  color: var(--accent);
+}
+.hljs-meta,
+.hljs-doctag {
+  color: var(--ink-2);
+}

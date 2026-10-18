@@ -1,0 +1,11 @@
+# Supply-chain hygiene: never resolve a package version published in the last 7 days.
+minimumReleaseAge: 10080
+savePrefix: ""
+# One KaTeX everywhere: rehype-katex and micromark-extension-math ask for 0.16.x, which has an advisory
+# (GHSA-238p-pmpm-9mq7, fixed in 0.18.2). The app itself already uses the patched 0.19.0.
+overrides:
+  katex: 0.19.0
+# Dependencies may not run install scripts unless listed here: esbuild (bundler) and workerd (Cloudflare's local Workers runtime).
+allowBuilds:
+  esbuild: true
+  workerd: true
