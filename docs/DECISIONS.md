@@ -81,7 +81,8 @@ A quote is "verified" when its normalised form (Markdown and LaTeX commands, pun
 
 ## ADR-012 — FSRS (ts-fsrs) for flashcard scheduling
 *2026-10-16 · accepted (Phase 2)*
-FSRS-5 is a maintained, open spaced-repetition algorithm with a small, pure TypeScript implementation that runs locally. Scheduling state is stored per card with a review log, so a future parameter fit stays possible. Intervals are previewed on the answer buttons.
+FSRS is a maintained, open spaced-repetition algorithm with a small, pure TypeScript implementation that runs locally. Scheduling state is stored per card with a review log, so a future parameter fit stays possible. Intervals are previewed on the answer buttons.
+*Correction, 2026-10-23: this record first said "FSRS-5". The pinned `ts-fsrs` 5.4.2 implements FSRS-6 (`FSRSVersion` reports "v5.4.2 using FSRS-6.0" and the default parameter set has 21 weights); the decision itself is unchanged.*
 
 ## ADR-013 — Written answers are self-marked in Phase 2; marks are always "uncertain"
 *2026-10-16 · accepted (Phase 2)*
