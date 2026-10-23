@@ -60,6 +60,9 @@ export default defineConfig(({ mode }) => {
       // Never inline assets as data: URIs: the CSP only allows fonts/images from our own origin.
       assetsInlineLimit: 0,
     },
+    // The library lives in IndexedDB, which the browser scopes to the exact address. If port 5173 were busy, Vite would
+    // quietly move to 5174 and the student would see an empty library; stop with an error instead (`--port` overrides).
+    server: { port: 5173, strictPort: true },
     // `vite preview` serves the production build with the production policy. The demo carries its policy in the page, so its
     // preview sends no headers: a test then proves that the policy in the page is what is enforced.
     preview: { headers: demo ? {} : SECURITY_HEADERS },

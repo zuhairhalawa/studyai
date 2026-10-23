@@ -12,10 +12,17 @@ export function isAcceptedFileName(name: string): boolean {
   return ACCEPTED.test(name);
 }
 
+/** What to tell the student about a file that is not accepted. One wording, so the import list and `parseFile` agree. */
+export function rejectionMessage(name: string): string {
+  return /\.ppt$/i.test(name)
+    ? 'This is an old .ppt file. Open it in PowerPoint and save it as .pptx first.'
+    : 'Only PowerPoint files (.pptx, .pptm, .ppsx, .potx) can be imported.';
+}
+
 /** Read and parse one file. Uses a Web Worker in the browser; runs inline where workers are unavailable (tests). */
 export async function parseFile(file: File, onProgress?: (done: number, total: number) => void): Promise<ParsedFile> {
   if (!isAcceptedFileName(file.name)) {
-    throw new PptxError('NOT_PPTX', /\.ppt$/i.test(file.name) ? 'This is an old .ppt file. Save it as .pptx in PowerPoint first.' : 'Only PowerPoint files (.pptx) can be imported.');
+    throw new PptxError('NOT_PPTX', rejectionMessage(file.name));
   }
   if (file.size > DEFAULT_LIMITS.maxFileBytes) {
     throw new PptxError('FILE_TOO_LARGE', `This file is ${(file.size / 1048576).toFixed(0)} MB; the limit is ${DEFAULT_LIMITS.maxFileBytes / 1048576} MB.`);
