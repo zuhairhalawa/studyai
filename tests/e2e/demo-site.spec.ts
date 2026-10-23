@@ -105,6 +105,14 @@ test('one click loads the sample course: slides beside text, search, flashcards 
   await page.keyboard.press('3');
   await expect(page.getByRole('button', { name: 'Show answer' }).or(page.getByRole('heading', { name: 'Session finished' }))).toBeVisible();
 
+  // --- notes: markdown with a drawn formula (KaTeX runs under the policy in the page) ---------------
+  await page.goto('./');
+  await page.getByRole('link', { name: SAMPLE }).first().click();
+  await tab(page, 'Notes').click();
+  await page.getByRole('link', { name: /Lecture 1 in brief/ }).click();
+  await expect(page.getByText('Imported study pack')).toHaveCount(2);
+  await expect(page.locator('.katex').first()).toBeVisible();
+
   // --- a practice exam from the sample questions ------------------------------------------
   await page.goto('./');
   await page.getByRole('link', { name: SAMPLE }).first().click();
