@@ -22,7 +22,7 @@ describe('the AI module is isolated from the offline app', () => {
   const ai = join(src, 'core', 'ai');
   const outside = files(src).filter((f) => !f.startsWith(ai));
 
-  it('nothing outside src/core/ai imports it (the app has no AI call path yet)', () => {
+  it("nothing outside src/core/ai imports it (the app reaches AI only through the Worker's /api endpoints)", () => {
     const offenders = outside.filter((f) => /from\s+['"][^'"]*(\/|@\/)core\/ai(\/|['"])|from\s+['"][^'"]*\/ai\/(guard|anthropic|ledger)['"]/.test(read(f))).map(rel);
     expect(offenders).toEqual([]);
   });
