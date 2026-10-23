@@ -1,0 +1,35 @@
+name: Feature request
+description: Suggest an improvement to StudyAI
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        StudyAI has a narrow purpose: a private, local-first study tool that can never spend money by accident. A change that widens that purpose may be declined with thanks, so please describe the problem first. See [CONTRIBUTING.md](https://github.com/zuhairhalawa/studyai/blob/main/CONTRIBUTING.md).
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the study task that is hard or impossible today, not the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like to see?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Workarounds you use today, or other ways this could work.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Fit with the project
+      options:
+        - label: This keeps lectures and study data on the student's device unless the student has seen and approved what is sent.
+          required: true
+        - label: This cannot cause AI spending, and AI stays off when a budget, quota or billing fact is unclear.
+          required: true
