@@ -1,0 +1,69 @@
+name: Bug report
+description: Something in StudyAI does not work as documented
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. StudyAI is a small project kept by one person, so reports are answered when time allows.
+
+        **Security problems are not issues.** If this could let someone read data, spend money or use a deployment that is not theirs, stop here and report it privately: see [SECURITY.md](https://github.com/zuhairhalawa/studyai/blob/main/SECURITY.md).
+
+        **Do not attach lecture slides, study packs, exports, API keys or anything personal.** If the failing input is private, reproduce it with an invented deck (the tests build them with `tests/fixtures/pptx-builder.ts`).
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where does it happen?
+      options:
+        - Study app (lectures, search, flashcards, exams)
+        - PowerPoint import and the extraction report
+        - Optional AI tutor / Worker
+        - Study packs and the command-line tool
+        - Backup and restore
+        - Documentation
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Say what you did and what you saw. Quote any error message exactly.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The smallest set of steps, using invented content only.
+      placeholder: |
+        1. Create a course
+        2. Import a deck with ...
+        3. Open ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Commit
+      description: The commit you are running (`git rev-parse --short HEAD`). The project is pre-1.0, so `main` is the supported version.
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, operating system and (for development) Node and pnpm versions
+      placeholder: Chrome 130 on Windows 11, Node 24, pnpm 11
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before you submit
+      options:
+        - label: This is not a security vulnerability.
+          required: true
+        - label: I have not included real lecture material, keys, or personal data.
+          required: true
