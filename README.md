@@ -37,7 +37,11 @@ pnpm install        # exact, pinned versions
 pnpm dev            # http://localhost:5173
 ```
 
-Create a course, drop in a `.pptx` file, and open it. The AI screens say "AI is not available here" until you set up the optional server below.
+Create a course, drop in a `.pptx` file (`.pptm`, `.ppsx` and `.potx` also work; an old `.ppt` must first be saved as `.pptx` in PowerPoint), and open it. The AI screens say "AI is not available here" until you set up the optional server below.
+
+**Where your data lives.** Your library is stored in your browser, for the exact address you opened (here `http://localhost:5173`). A different port, browser or browser profile is a different, empty library, which is why the dev server stops with an error instead of quietly moving to another port when 5173 is busy (use `pnpm dev --port <n>` to choose one on purpose). Use **Export backup** under *Backup and restore* in Settings to keep a copy or to move your library.
+
+**Production headers.** `pnpm dev` is the development server and does not send the production security headers (the Content-Security-Policy and the others). To run the production build with them, use `pnpm build` and then `pnpm preview`.
 
 ## Optional: the AI tutor on the Gemini free tier
 
