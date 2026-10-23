@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from 'react-router';
 import { BookOpen, Menu, Monitor, Moon, Plus, Search, Settings, Sun, X } from 'lucide-react';
 import { getDb } from '@/core/db/db';
 import { createCourse } from '@/core/db/library';
+import { DemoBanner } from '@/demo/DemoBanner';
 import { Button, Dialog, Field, IconButton, TextInput } from '@/ui/primitives';
 import { useAllLectures, useCourses } from './data';
 import { useTheme } from './theme';
@@ -138,6 +139,8 @@ export function Shell() {
         </aside>
 
         <div className="min-w-0">
+          {/* Only the static public demo (vite build --mode demo) has a banner; the regular build compiles it away. */}
+          {import.meta.env.MODE === 'demo' && <DemoBanner />}
           <header className="sticky top-0 z-30 flex items-center gap-2 border-b border-rule bg-surface px-3 py-2 md:hidden print:hidden">
             <IconButton label="Open menu" onClick={() => setMenuOpen(true)}>
               <Menu className="size-5" aria-hidden />

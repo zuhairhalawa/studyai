@@ -22,6 +22,14 @@ export const CSP = [
   "frame-ancestors 'none'",
 ].join('; ');
 
+/** Directives a browser ignores (and reports as an error) in a policy delivered by <meta>: only a response header can carry them. */
+const HEADER_ONLY = new Set(['frame-ancestors', 'report-uri', 'sandbox']);
+
+/** The same policy for hosting that cannot send headers (the static demo, docs/DEMO.md): CSP minus what a <meta> cannot carry. */
+export const META_CSP = CSP.split('; ')
+  .filter((directive) => !HEADER_ONLY.has(directive.split(' ')[0] ?? ''))
+  .join('; ');
+
 export const SECURITY_HEADERS: Record<string, string> = {
   'Content-Security-Policy': CSP,
   'X-Content-Type-Options': 'nosniff',

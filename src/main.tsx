@@ -6,7 +6,8 @@ import { App } from './app/App';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    {/* "/" for the regular build; the static demo is served from a sub-path (vite.config.ts). */}
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <App />
     </BrowserRouter>
   </StrictMode>,
