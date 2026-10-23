@@ -3,7 +3,7 @@ import { describePptxError } from '@/core/pptx';
 import { getDb } from '@/core/db/db';
 import { findDuplicates, findSameNamed, importLecture, replaceLecture } from '@/core/db/library';
 import { newId } from '@/core/id';
-import { isAcceptedFileName, parseFile } from './importer';
+import { isAcceptedFileName, parseFile, rejectionMessage } from './importer';
 
 const db = getDb();
 
@@ -100,7 +100,7 @@ export function useImporter(courseId: string | undefined) {
     (files: File[], replaceLectureId?: string) => {
       const jobs: Job[] = files.map((file) => {
         const rejected = !isAcceptedFileName(file.name);
-        const item: ImportItem = { id: newId(), name: file.name, size: file.size, status: rejected ? 'error' : 'queued', error: rejected ? (/\.ppt$/i.test(file.name) ? 'This is an old .ppt file. Open it in PowerPoint and save it as .pptx first.' : 'Only PowerPoint (.pptx) files can be imported.') : undefined };
+        const item: ImportItem = { id: newId(), name: file.name, size: file.size, status: rejected ? 'error' : 'queued', error: rejected ? rejectionMessage(file.name) : undefined };
         return { item, file, replaceLectureId };
       });
       setItems((xs) => [...xs, ...jobs.map((j) => j.item)]);
