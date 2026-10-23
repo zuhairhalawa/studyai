@@ -11,9 +11,11 @@
                                    ┌─────────▼─────────┐   secrets: provider keys, owner hash
                                    │ Cloudflare Worker │   Durable Object (SQLite): counters
                                    │  auth · allowlist │──► Gemini Free Tier  (owner-attested)
-                                   │  limits · logging │──► Claude API        (disabled by default)
+                                   │  limits · logging │
                                    └───────────────────┘
 ```
+
+An adapter for the Claude API exists in `src/core/ai/` but is **not wired into the Worker**, so the diagram shows only the Gemini path; see [FINANCIAL-SAFETY.md](FINANCIAL-SAFETY.md) section 5.
 
 ## Source layout
 
