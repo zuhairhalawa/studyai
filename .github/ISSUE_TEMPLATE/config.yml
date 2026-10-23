@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability (private)
+    url: https://github.com/zuhairhalawa/studyai/security/advisories/new
+    about: Security problems are not issues. Use GitHub's private vulnerability reporting, as described in SECURITY.md.
