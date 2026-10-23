@@ -156,7 +156,7 @@ test('rejects unsafe or unsupported files with clear messages', async ({ page })
     { name: 'old.ppt', mimeType: 'application/vnd.ms-powerpoint', buffer: Buffer.from('x') },
     { name: 'fake.pptx', mimeType: 'application/octet-stream', buffer: Buffer.from('this is not a zip file but is long enough to be read') },
   ]);
-  await expect(page.getByText('Only PowerPoint (.pptx) files can be imported.')).toBeVisible();
+  await expect(page.getByText('Only PowerPoint files (.pptx, .pptm, .ppsx, .potx) can be imported.')).toBeVisible();
   await expect(page.getByText(/old \.ppt file/)).toBeVisible();
   await expect(page.getByText('This file is not a valid .pptx presentation.')).toBeVisible();
   await expect(page.getByText('No lectures yet')).toBeVisible(); // nothing was stored
