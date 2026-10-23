@@ -3,7 +3,8 @@ import type { SchedulerState } from './types';
 
 /**
  * Spaced repetition: FSRS (Free Spaced Repetition Scheduler), via the MIT-licensed `ts-fsrs`
- * reference implementation (FSRS-5 with its default, research-derived parameters).
+ * reference implementation (ts-fsrs 5.4.2 implements FSRS-6, with its default research-derived weights;
+ * the maximum interval is capped at 365 days below).
  *
  *  - Each review answers "how well did I remember?" as 1 Again · 2 Hard · 3 Good · 4 Easy.
  *  - FSRS models memory with *stability* (days until recall probability drops to 90 %),
