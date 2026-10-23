@@ -151,16 +151,17 @@ export function oleFrame(id: number, progId: string, previewRid: string): string
   );
 }
 
-/** An equation shape the way PowerPoint 2010+ writes it (AlternateContent with picture fallback). */
-export function equationShape(id: number, omml: string): string {
+/** An equation shape the way PowerPoint 2010+ writes it (AlternateContent with picture fallback). `box` is its x, y, width and height in EMU. */
+export function equationShape(id: number, omml: string, box: [number, number, number, number] = [1000000, 3500000, 4000000, 800000]): string {
+  const [x, y, w, h] = box;
   return (
     `<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">` +
     `<mc:Choice xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" Requires="a14">` +
     `<p:sp><p:nvSpPr><p:cNvPr id="${id}" name="Equation ${id}"/><p:cNvSpPr txBox="1"/><p:nvPr/></p:nvSpPr>` +
-    `<p:spPr><a:xfrm><a:off x="1000000" y="3500000"/><a:ext cx="4000000" cy="800000"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr>` +
+    `<p:spPr><a:xfrm><a:off x="${x}" y="${y}"/><a:ext cx="${w}" cy="${h}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr>` +
     `<p:txBody><a:bodyPr/><a:lstStyle/><a:p><a14:m><m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"><m:oMath>${omml}</m:oMath></m:oMathPara></a14:m><a:endParaRPr lang="en-US"/></a:p></p:txBody></p:sp>` +
     `</mc:Choice><mc:Fallback>` +
-    `<p:pic><p:nvPicPr><p:cNvPr id="${id + 100}" name="Equation fallback"/><p:cNvPicPr/><p:nvPr/></p:nvPicPr><p:blipFill><a:blip r:embed="rIdImg1"/><a:stretch><a:fillRect/></a:stretch></p:blipFill><p:spPr><a:xfrm><a:off x="1000000" y="3500000"/><a:ext cx="4000000" cy="800000"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>` +
+    `<p:pic><p:nvPicPr><p:cNvPr id="${id + 100}" name="Equation fallback"/><p:cNvPicPr/><p:nvPr/></p:nvPicPr><p:blipFill><a:blip r:embed="rIdImg1"/><a:stretch><a:fillRect/></a:stretch></p:blipFill><p:spPr><a:xfrm><a:off x="${x}" y="${y}"/><a:ext cx="${w}" cy="${h}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>` +
     `</mc:Fallback></mc:AlternateContent>`
   );
 }
