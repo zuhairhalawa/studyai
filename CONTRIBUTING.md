@@ -22,9 +22,9 @@ pnpm scan:secrets                # working tree and full git history
 `pnpm check` takes a few minutes. The browser tests start the real local Worker and Durable Object with a scripted fake
 Gemini; no network and no Google account are involved, and no real AI request is ever made by the test suite.
 
-The browser tests use the local ports 4391, 8792, 8793 and 8795. If your system has reserved them (on Windows the tests
-then stop with `listen EACCES`; `netsh int ipv4 show excludedportrange protocol=tcp` lists the reserved ranges), move all four with one
-variable, for example `STUDYAI_E2E_PORT_BASE=24000 pnpm check` (it uses 24000 to 24003). The ports are defined in `tests/e2e/ports.ts`.
+The browser tests use the local ports 4391, 4392, 8792, 8793 and 8795. If your system has reserved them (on Windows the tests
+then stop with `listen EACCES`; `netsh int ipv4 show excludedportrange protocol=tcp` lists the reserved ranges), move all five with one
+variable, for example `STUDYAI_E2E_PORT_BASE=24000 pnpm check` (it uses 24000 to 24004). The ports are defined in `tests/e2e/ports.ts`.
 
 ## What a good change looks like
 
