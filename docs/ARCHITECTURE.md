@@ -26,6 +26,7 @@
 | `src/core/backup/` | Export/import of the whole library (and study data) as one ZIP, with validation. |
 | `src/cli/` | Node CLI (`extract`, `validate`, `prompt`) that reuses the same engine; bundled to `dist-cli/lecture-cli.mjs`. |
 | `src/app/`, `src/ui/`, `src/pages/` | React app shell, components and pages. |
+| `src/demo/`, `src/app/ai.demo.ts` | The public static demo only (`pnpm build:demo`, see [DEMO.md](DEMO.md)): banner, the invented sample course, and the stub that replaces the AI client. Not part of the regular build. |
 | `.claude/skills/lecture-pack/` | Claude Code skill: lecture → study pack using the Claude Code subscription (no API). |
 | `worker/` | Cloudflare Worker (owner login, routing, AI endpoints) and its Durable Object (spend ledger, settings, login throttle). |
 
