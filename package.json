@@ -21,6 +21,7 @@
     "check": "tsc -b --noEmit && pnpm typecheck:worker && vitest run && playwright test",
     "notices": "node scripts/third-party-notices.mjs",
     "scan:secrets": "node scripts/scan-secrets.mjs",
+    "check:attribution": "node scripts/check-attribution.mjs",
     "cli:build": "vite build -c vite.cli.config.ts",
     "types:worker": "wrangler types --strict-vars=false",
     "typecheck:worker": "pnpm types:worker && tsc -p tsconfig.worker.json",

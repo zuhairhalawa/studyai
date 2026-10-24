@@ -38,6 +38,8 @@ variable, for example `STUDYAI_E2E_PORT_BASE=24000 pnpm check` (it uses 24000 to
   unclear. Read [docs/FINANCIAL-SAFETY.md](docs/FINANCIAL-SAFETY.md) before touching `src/core/ai/` or `worker/`.
 * **Small, readable commits** with a message that says why. Record a decision that is not obvious in
   [docs/DECISIONS.md](docs/DECISIONS.md).
+* **No AI co-author trailers.** A commit message never names an AI tool as co-author or assistant (`Co-Authored-By: Claude`,
+  "Generated with ..." footers and the like); human co-authors are welcome. CI runs `pnpm check:attribution` on every pull request.
 
 ## Style
 
