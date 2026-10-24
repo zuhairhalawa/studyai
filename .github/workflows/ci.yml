@@ -38,5 +38,6 @@ jobs:
       - run: pnpm typecheck:worker
       - run: pnpm test
       - run: pnpm scan:secrets
+      - run: pnpm check:attribution
       - run: pnpm audit
       - run: pnpm build
